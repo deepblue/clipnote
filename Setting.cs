@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using Microsoft.Win32;
 
 namespace ClipNote
 {
@@ -62,6 +63,16 @@ namespace ClipNote
             return ret;
         }
 
+        public void ClearSession()
+        {
+            this.AccessToken = String.Empty;
+            this.AccessTokenSecret = String.Empty;
+            this.pageId = String.Empty;
+            this.pageUrl = String.Empty;
+            this.pageId = String.Empty;
+            Save();
+        }
+
         public Springnote.Consumer GetConsumer()
         {
             return consumer;
@@ -105,6 +116,18 @@ namespace ClipNote
 
             Save();
             return true;
+        }
+
+        public void SetAutorun(string path)
+        {
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            rkApp.SetValue("ClipNote", "\"" + path + "\" /minimize");
+        }
+
+        public void ClearAutorun()
+        {
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            rkApp.DeleteValue("ClipNote", false);
         }
     }
 }

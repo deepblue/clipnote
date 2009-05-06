@@ -3,7 +3,7 @@
 
 Name "ClipNote"
 
-OutFile "clipnote_setup_08.exe"
+OutFile "clipnote_setup_081.exe"
 
 InstallDir $PROGRAMFILES\Springnote\ClipNote
 InstallDirRegKey HKLM Software\ClipNote ""
@@ -45,6 +45,10 @@ Section "Program FIles"
 	;ExecShell open "http://www.microsoft.com/downloads/details.aspx?FamilyID=262d25e3-f589-4842-8157-034d1e7cf3a3&DisplayLang=en"
 	Abort
   
+  ;IfFileExists "$INSTDIR\ClipNote.exe" 0 +3
+  ;Exec '"$INSTDIR\ClipNote.exe" /stop'
+  ;Sleep 1000
+  
   SetOutPath $INSTDIR
   File ..\bin\Release\SpringnoteSharp.dll
   File ..\bin\Release\ClipNote.exe
@@ -74,11 +78,15 @@ SectionEnd
 ; Uninstaller
 
 Section "Uninstall"
+  IfFileExists "$INSTDIR\ClipNote.exe" 0 +3
+  Exec '"$INSTDIR\ClipNote.exe" /stop'
+  Sleep 1000
   
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ClipNote"
-  DeleteRegKey HKLM SOFTWARE\ClipNote
-
+  DeleteRegKey HKLM "SOFTWARE\ClipNote"
+  DeleteRegValue HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Run" "ClipNote"
+ 
   ; Remove files and uninstaller
   Delete $INSTDIR\*.*
 
@@ -88,6 +96,7 @@ Section "Uninstall"
   ; Remove directories used
   RMDir "$SMPROGRAMS\ClipNote"
   RMDir "$INSTDIR"
+  RMDIR /r "$LOCALAPPDATA\Springnote\ClipNote"
 
 SectionEnd
 

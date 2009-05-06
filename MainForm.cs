@@ -22,13 +22,18 @@ namespace ClipNote
         private bool TimeToExit = false;
 
 
-        public MainForm()
+        public MainForm(bool minimized)
         {
             InitializeComponent();
 
             this.setting = Setting.Load(Application.LocalUserAppDataPath);
             this.urlPattern = new Regex("^https?://([A-Za-z0-9-].*?).springnote.com/pages/([0-9]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             this.clipboardSender = new ClipboardSender(this.Handle, this.setting);
+
+            if (minimized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
 
         public void Initialize()
@@ -43,6 +48,10 @@ namespace ClipNote
             if (this.frmLogin == null)
             {
                 this.frmLogin = new LoginForm(setting, this);
+            }
+            else
+            {
+                this.frmLogin.Clear();
             }
 
             this.frmLogin.Show();
@@ -199,6 +208,37 @@ namespace ClipNote
             if (this.Visible && (this.WindowState == FormWindowState.Minimized))
             {
                 this.Hide();
+            }
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized && this.Visible)
+                this.Hide();
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.Hide();
+        }
+
+        private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            setting.ClearSession();
+            TextboxUrl.Clear();
+            ShowLoginForm();
+        }
+
+        private void checkBoxAutorun_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAutorun.Checked)
+            {
+                setting.SetAutorun(Application.ExecutablePath.ToString());
+            }
+            else
+            {
+                setting.ClearAutorun();
             }
         }
     }

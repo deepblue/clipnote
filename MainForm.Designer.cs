@@ -40,18 +40,24 @@
             this.openSpringnotePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TextboxUrl = new System.Windows.Forms.TextBox();
-            this.helpText = new System.Windows.Forms.TextBox();
             this.helpLink = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.TextboxUrl = new System.Windows.Forms.TextBox();
             this.buttonChange = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.helpText = new System.Windows.Forms.TextBox();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.checkBoxAutorun = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.systemHotkey = new ClipNote.SystemHotkey.SystemHotkey(this.components);
             this.systemHotkey1 = new ClipNote.SystemHotkey.SystemHotkey(this.components);
             this.systemHotkey2 = new ClipNote.SystemHotkey.SystemHotkey(this.components);
             this.trayMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -128,26 +134,6 @@
             this.exitToolStripMenuItem.Text = "종료";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // TextboxUrl
-            // 
-            this.TextboxUrl.Location = new System.Drawing.Point(8, 33);
-            this.TextboxUrl.Name = "TextboxUrl";
-            this.TextboxUrl.Size = new System.Drawing.Size(244, 21);
-            this.TextboxUrl.TabIndex = 5;
-            this.TextboxUrl.TextChanged += new System.EventHandler(this.TextboxUrl_TextChanged);
-            // 
-            // helpText
-            // 
-            this.helpText.BackColor = System.Drawing.SystemColors.Info;
-            this.helpText.Location = new System.Drawing.Point(12, 12);
-            this.helpText.Multiline = true;
-            this.helpText.Name = "helpText";
-            this.helpText.ReadOnly = true;
-            this.helpText.Size = new System.Drawing.Size(320, 44);
-            this.helpText.TabIndex = 5;
-            this.helpText.Text = "1) ALT+F12: 클립보드 내용을 스프링노트로\r\n2) ALT+F11: 빠른 메모 입력창 열기\r\n3) ALT+F10: 화면 캡춰해서 스프링노트로" +
-                "";
-            // 
             // helpLink
             // 
             this.helpLink.AutoSize = true;
@@ -168,27 +154,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "메모를 남길 페이지 URL을 적어주세요";
             // 
-            // groupBox1
+            // TextboxUrl
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.buttonChange);
-            this.groupBox1.Controls.Add(this.TextboxUrl);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 74);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 80);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Page:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 12);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "예) http://help.springnote.com/pages/6883";
+            this.TextboxUrl.Location = new System.Drawing.Point(8, 33);
+            this.TextboxUrl.Name = "TextboxUrl";
+            this.TextboxUrl.Size = new System.Drawing.Size(244, 21);
+            this.TextboxUrl.TabIndex = 5;
+            this.TextboxUrl.TextChanged += new System.EventHandler(this.TextboxUrl_TextChanged);
             // 
             // buttonChange
             // 
@@ -200,6 +172,91 @@
             this.buttonChange.Text = "변경";
             this.buttonChange.UseVisualStyleBackColor = true;
             this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(249, 12);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "예) http://help.springnote.com/pages/6883";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.buttonChange);
+            this.groupBox1.Controls.Add(this.TextboxUrl);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(12, 74);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(320, 79);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Page:";
+            // 
+            // helpText
+            // 
+            this.helpText.BackColor = System.Drawing.SystemColors.Info;
+            this.helpText.Location = new System.Drawing.Point(12, 12);
+            this.helpText.Multiline = true;
+            this.helpText.Name = "helpText";
+            this.helpText.ReadOnly = true;
+            this.helpText.Size = new System.Drawing.Size(320, 44);
+            this.helpText.TabIndex = 5;
+            this.helpText.Text = "1) ALT+F12: 클립보드 내용을 스프링노트로\r\n2) ALT+F11: 빠른 메모 입력창 열기\r\n3) ALT+F10: 화면 캡춰해서 스프링노트로" +
+                "";
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Location = new System.Drawing.Point(257, 233);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.TabIndex = 7;
+            this.buttonOK.Text = "확인";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
+            // checkBoxAutorun
+            // 
+            this.checkBoxAutorun.AutoSize = true;
+            this.checkBoxAutorun.Location = new System.Drawing.Point(6, 20);
+            this.checkBoxAutorun.Name = "checkBoxAutorun";
+            this.checkBoxAutorun.Size = new System.Drawing.Size(156, 16);
+            this.checkBoxAutorun.TabIndex = 0;
+            this.checkBoxAutorun.Text = "윈도우 시작시 자동 실행";
+            this.checkBoxAutorun.UseVisualStyleBackColor = true;
+            this.checkBoxAutorun.CheckedChanged += new System.EventHandler(this.checkBoxAutorun_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(171, 12);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "# 다른 계정으로 사용하시려면 ";
+            // 
+            // linkLabelLogout
+            // 
+            this.linkLabelLogout.AutoSize = true;
+            this.linkLabelLogout.Location = new System.Drawing.Point(185, 156);
+            this.linkLabelLogout.Name = "linkLabelLogout";
+            this.linkLabelLogout.Size = new System.Drawing.Size(109, 12);
+            this.linkLabelLogout.TabIndex = 12;
+            this.linkLabelLogout.TabStop = true;
+            this.linkLabelLogout.Text = "로그아웃 해주세요.";
+            this.linkLabelLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelLogout_LinkClicked);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkBoxAutorun);
+            this.groupBox2.Location = new System.Drawing.Point(12, 184);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(320, 43);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "고급";
             // 
             // systemHotkey
             // 
@@ -220,24 +277,31 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 166);
+            this.ClientSize = new System.Drawing.Size(344, 261);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.linkLabelLogout);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.helpText);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.helpLink);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(352, 200);
-            this.MinimumSize = new System.Drawing.Size(352, 185);
+            this.MaximumSize = new System.Drawing.Size(352, 400);
+            this.MinimumSize = new System.Drawing.Size(352, 295);
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "클립노트 v0.8";
+            this.Text = "클립노트 v0.8.1";
+            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.Shown += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.trayMenu.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,13 +313,6 @@
         private System.Windows.Forms.ContextMenuStrip trayMenu;
         private System.Windows.Forms.ToolStripMenuItem restoreClipNoteWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.TextBox TextboxUrl;
-        private System.Windows.Forms.TextBox helpText;
-        private System.Windows.Forms.LinkLabel helpLink;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonChange;
-        private System.Windows.Forms.Label label1;
         private ClipNote.SystemHotkey.SystemHotkey systemHotkey;
         private ClipNote.SystemHotkey.SystemHotkey systemHotkey1;
         private System.Windows.Forms.ToolStripMenuItem sendClipboardToSpringnoteToolStripMenuItem;
@@ -265,6 +322,18 @@
         private System.Windows.Forms.ToolStripMenuItem openSpringnotePageToolStripMenuItem;
         private ClipNote.SystemHotkey.SystemHotkey systemHotkey2;
         private System.Windows.Forms.ToolStripMenuItem captureScreenALTF10ToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel helpLink;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TextboxUrl;
+        private System.Windows.Forms.Button buttonChange;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox helpText;
+        private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.CheckBox checkBoxAutorun;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel linkLabelLogout;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

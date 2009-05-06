@@ -13,6 +13,7 @@ namespace ClipNote
     {
         private Setting setting;
         private MainForm mainForm;
+        private bool requested = false;
 
         public LoginForm(Setting setting, MainForm form)
         {
@@ -23,15 +24,33 @@ namespace ClipNote
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            requested = true;
             setting.Authorize();
 
             buttonLogin.Hide();
             buttonAuthorize.Show();
+
+            buttonCancel.Text = "취소";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (!requested)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                Clear();
+            }
+        }
+
+        public void Clear()
+        {
+            requested = false;
+            buttonAuthorize.Hide();
+            buttonLogin.Show();
+            buttonCancel.Text = "종료";
         }
 
         private void buttonAuthorize_Click(object sender, EventArgs e)

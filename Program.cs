@@ -15,8 +15,24 @@ namespace ClipNote
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            bool minimized = false;
+
+            if (args.Length == 1)
+            {
+                string cmd = args[0].ToLower();
+                if (cmd == "/minimize")
+                {
+                    minimized = true;
+                }
+                else if (cmd == "/stop")
+                {
+                    StopExistingProcess();
+                    return;
+                }
+            }
+
             Process instance = null;
             instance = RunningInstance();
 
@@ -24,11 +40,21 @@ namespace ClipNote
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+                Application.Run(new MainForm(minimized));
             }
             else
             {
                 HandleRunningInstance(instance);
+            }
+        }
+
+        static void StopExistingProcess()
+        {
+            Process instance = null;
+            instance = RunningInstance();
+            if (instance != null)
+            {
+                instance.Kill();
             }
         }
 
